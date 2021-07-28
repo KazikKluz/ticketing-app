@@ -1,18 +1,15 @@
-apiVersion: skaffold/v2alpha3
+apiVersion: skaffold/v2beta19
 kind: Config
+metadata:
+  name: ticketing-app
+build:
+  artifacts:
+  - image: kazikdocker/auth
+    context: auth
+    docker:
+      dockerfile: Dockerfile
 deploy:
   kubectl:
     manifests:
-      - ./infra/k8s/*
-build:
-  local:
-    push: false
-  artifacts:
-    - image: kazikdocker/auth
-      context: auth
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.ts'
-            dest: .
+    - infra/k8s/auth-depl.yaml
+    - infra/k8s/ingress-srv.yaml
