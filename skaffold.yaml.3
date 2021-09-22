@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2beta22
+apiVersion: skaffold/v2beta19
 kind: Config
 metadata:
   name: ticketing-app
@@ -12,5 +12,4 @@ deploy:
   kubectl:
     manifests:
     - infra/k8s/auth-depl.yaml
-    - infra/k8s/auth-mongo-depl.yaml
     - infra/k8s/ingress-srv.yaml
